@@ -74,5 +74,6 @@ test("nested validateRequest", function() {
 test("multi nested validateRequest regexp or string", function () {
 	var loadFixture = getLoadFixture();
 	var fixture = xhrfixture(loadFixture);
+	ok(fixture.validateRequest({method: "GET", headers: {"Host": /myhost/}}), "founds everything correctly");
 	ok(!fixture.validateRequest({method: "POST", headers: {"Host": /myhost/}}), "validates pessimistic correctly");
 });

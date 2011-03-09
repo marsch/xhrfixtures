@@ -1,0 +1,21 @@
+[
+	{
+		"simple fixture": {
+			"request": {
+				"method": "GET",
+				"path": "/",
+				"headers": {
+					"Host": "www.myhost.com"
+				},
+				"payload": ""
+			},
+			"response":  {
+				"status": 200,
+				"headers": {
+			
+				},
+				"payload": "some payload for you"
+			}
+		}
+	}
+]

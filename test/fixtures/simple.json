@@ -26,10 +26,10 @@
 				"headers": {
 
 				},
-				"payload": "some payload for you"
+				"Payload": "some payload for you"
 			}
 		},
-		"simple realive fixture": {
+		"simple real live fixture": {
 			"__valid_request": {
 				"method": "POST"
 				},

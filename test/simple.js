@@ -25,7 +25,7 @@ function getLoadFixture() {
 			"headers": {
 		
 			},
-			"payload": "some payload for you"
+			"Payload": "some payload for you"
 		}
 	};
 }
@@ -102,9 +102,10 @@ test("simple validate integrated validation", function() {
 	var fixture = xhrfixture(loadFixture);
 	ok(!fixture.validateRequest(), "request validation failed with params from response (wrong method)");
 	ok(fixture.validateResponse(), "validate response with params from request");
-})
+});
 
 /**
+fixtures - header case-insensitive
 fixture should contain a validation parameter
 fixture should have a option to extract parameters for further tests
 fixture should have a dynamic value options (like mustache or something)

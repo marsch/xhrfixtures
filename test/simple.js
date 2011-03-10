@@ -1,5 +1,16 @@
 function getLoadFixture() {
 	return {
+		"__valid_response": {
+			"status": 200,
+			"payload": {
+				"type": "RegExp",
+				"pattern": "payload",
+				"modifiers": "gim"
+			}
+		},
+		"__valid_request": {
+			"method": "POST"
+		},
 		"request": {
 			"method": "GET",
 			"path": "/",
@@ -7,6 +18,7 @@ function getLoadFixture() {
 				"Host": "www.myhost.com"
 			},
 			"payload": ""
+			
 		},
 		"response":  {
 			"status": 200,
@@ -77,3 +89,24 @@ test("multi nested validateRequest regexp or string", function () {
 	ok(fixture.validateRequest({method: "GET", headers: {"Host": /myhost/}}), "founds everything correctly");
 	ok(!fixture.validateRequest({method: "POST", headers: {"Host": /myhost/}}), "validates pessimistic correctly");
 });
+
+test("simple testing included validation", function () {
+	var loadFixture = getLoadFixture();
+	var fixture = xhrfixture(loadFixture);
+	ok(!fixture.validateRequest(loadFixture.__valid_request), "request validation failed with params from response (wrong method)");
+	ok(fixture.validateResponse(loadFixture.__valid_response), "validate response with params from request");
+});
+
+test("simple validate integrated validation", function() {
+	var loadFixture = getLoadFixture();
+	var fixture = xhrfixture(loadFixture);
+	ok(!fixture.validateRequest(), "request validation failed with params from response (wrong method)");
+	ok(fixture.validateResponse(), "validate response with params from request");
+})
+
+/**
+fixture should contain a validation parameter
+fixture should have a option to extract parameters for further tests
+fixture should have a dynamic value options (like mustache or something)
+
+**/

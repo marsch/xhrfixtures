@@ -1,6 +1,17 @@
 [
 	{
 		"simple fixture": {
+			"__valid_response": {
+				"status": 200,
+				"payload": {
+					"type": "RegExp",
+					"pattern": "payload",
+					"modifiers": "gim"
+				}
+			},
+			"__valid_request": {
+				"method": "POST"
+			},
 			"request": {
 				"method": "GET",
 				"path": "/",
@@ -8,13 +19,38 @@
 					"Host": "www.myhost.com"
 				},
 				"payload": ""
+
+			},
+			"response":  {
+				"status": 200,
+				"headers": {
+
+				},
+				"payload": "some payload for you"
+			}
+		},
+		"simple realive fixture": {
+			"__valid_request": {
+				"method": "POST"
+				},
+			"__valid_response": {
+				"status": 200,
+				"payload": "/session/"	
+			},
+			"request": {
+				"method": "POST",
+				"path": "/ajax/login=action=login",
+				"headers": {
+					"Host": "ox.sourcegarden.com"
+				},
+				"payload": "{'name': 'test', 'password':'123'}"
 			},
 			"response":  {
 				"status": 200,
 				"headers": {
 			
 				},
-				"payload": "some payload for you"
+				"payload": "{'session': '3adfjo2i3isakal2', 'random': '3lasklj303829283wkj3'}"
 			}
 		}
 	}

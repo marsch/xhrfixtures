@@ -3,10 +3,18 @@
 		"simple fixture": {
 			"__valid_response": {
 				"status": 200,
+				"headers": {
+					"Content-type": {
+						"type": "RegExp",
+						"pattern": "json",
+						"modifiers": "gim"
+					}
+				},
 				"payload": {
-					"type": "RegExp",
-					"pattern": "payload",
-					"modifiers": "gim"
+					"session": {
+						"type": "RegExp",
+						"pattern": "\\w+"
+					}
 				}
 			},
 			"__valid_request": {
@@ -24,9 +32,9 @@
 			"response":  {
 				"status": 200,
 				"headers": {
-
+					"Content-Type": "application/json"
 				},
-				"Payload": "some payload for you"
+				"Payload": "{\"session\": \"3adfjo2i3isakal2\", \"random\": \"3lasklj303829283wkj3\"}"
 			}
 		},
 		"simple real live fixture": {

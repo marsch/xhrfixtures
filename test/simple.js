@@ -2,10 +2,18 @@ function getLoadFixture() {
 	return {
 		"__valid_response": {
 			"status": 200,
+			"headers": {
+				"Content-type": {
+					"type": "RegExp",
+					"pattern": "json",
+					"modifiers": "gim"
+				}
+			},
 			"payload": {
-				"type": "RegExp",
-				"pattern": "payload",
-				"modifiers": "gim"
+				"session": {
+					"type": "RegExp",
+					"pattern": "\\w+"
+				}
 			}
 		},
 		"__valid_request": {
@@ -23,9 +31,9 @@ function getLoadFixture() {
 		"response":  {
 			"status": 200,
 			"headers": {
-		
+				"Content-Type": "application/json"
 			},
-			"Payload": "some payload for you"
+			"Payload": "{\"session\": \"3adfjo2i3isakal2\", \"random\": \"3lasklj303829283wkj3\"}"
 		}
 	};
 }
@@ -72,7 +80,7 @@ test("getSpec method", function () {
 test("simple validateResponse", function () {
 	var loadFixture = getLoadFixture();
 	var fixture = xhrfixture(loadFixture);
-	ok(fixture.validateResponse({payload: /some payload/}), "finds the right thing in the payload");
+	ok(fixture.validateResponse({payload: /session/}), "finds the right thing in the payload");
 	ok(!fixture.validateResponse({payload: /noone should find this/}), "and do not find the incorrect thing");	
 });
 
@@ -105,6 +113,7 @@ test("simple validate integrated validation", function() {
 });
 
 /**
+if string is parsable json - continue with validation tree
 fixtures - header case-insensitive
 fixture should contain a validation parameter
 fixture should have a option to extract parameters for further tests

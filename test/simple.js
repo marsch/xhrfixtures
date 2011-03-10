@@ -1,5 +1,5 @@
 function getLoadFixture() {
-	return {
+	return { 
 		"__valid_response": {
 			"status": 200,
 			"headers": {
@@ -17,7 +17,7 @@ function getLoadFixture() {
 			}
 		},
 		"__valid_request": {
-			"method": "POST"
+			"method": "GET"
 		},
 		"request": {
 			"method": "GET",
@@ -26,7 +26,7 @@ function getLoadFixture() {
 				"Host": "www.myhost.com"
 			},
 			"payload": ""
-			
+
 		},
 		"response":  {
 			"status": 200,
@@ -80,39 +80,66 @@ test("getSpec method", function () {
 test("simple validateResponse", function () {
 	var loadFixture = getLoadFixture();
 	var fixture = xhrfixture(loadFixture);
-	ok(fixture.validateResponse({payload: /session/}), "finds the right thing in the payload");
-	ok(!fixture.validateResponse({payload: /noone should find this/}), "and do not find the incorrect thing");	
+	fixture.validateResponse({payload: /session/});
 });
 
 test("nested validateRequest", function() {
 	var loadFixture = getLoadFixture();
 	var fixture = xhrfixture(loadFixture);
-	ok(fixture.validateRequest({headers: {"Host": /myhost/}}), "finds nested thing also");
-	ok(!fixture.validateRequest({headers: {"none": /youneverfind/}}), "and didn't find the wrong one");
+	fixture.validateRequest({headers: {"Host": /myhost/}});
 });
 
 test("multi nested validateRequest regexp or string", function () {
 	var loadFixture = getLoadFixture();
 	var fixture = xhrfixture(loadFixture);
-	ok(fixture.validateRequest({method: "GET", headers: {"Host": /myhost/}}), "founds everything correctly");
-	ok(!fixture.validateRequest({method: "POST", headers: {"Host": /myhost/}}), "validates pessimistic correctly");
+	fixture.validateRequest({method: "GET", headers: {"Host": /myhost/}}); 
 });
 
 test("simple testing included validation", function () {
 	var loadFixture = getLoadFixture();
 	var fixture = xhrfixture(loadFixture);
-	ok(!fixture.validateRequest(loadFixture.__valid_request), "request validation failed with params from response (wrong method)");
-	ok(fixture.validateResponse(loadFixture.__valid_response), "validate response with params from request");
+	fixture.validateRequest(loadFixture.__valid_request);
+	fixture.validateResponse(loadFixture.__valid_response);
 });
 
 test("simple validate integrated validation", function() {
 	var loadFixture = getLoadFixture();
 	var fixture = xhrfixture(loadFixture);
-	ok(!fixture.validateRequest(), "request validation failed with params from response (wrong method)");
-	ok(fixture.validateResponse(), "validate response with params from request");
+	fixture.validateRequest();
+	fixture.validateResponse();
+});
+
+test("test integrated, loading and validation of fixtures", function () {
+	var fix = xhrfixtures();
+	fix.loadFixtures(["./test/fixtures/simple.json"], function (err, results) {
+		var fixture = fix.getFixtures()["simple real live fixture"]; //first one 
+		ok((typeof fixture === "object"), "the single fixture item is an object");
+		ok((typeof fixture.getSpec().request === "object" && typeof fixture.getSpec().response === "object"), "and the item contains to fields (request, response)");
+
+		fixture.validateResponse();
+		fixture.validateRequest();
+		start();
+	});  
+	stop(2000);
+});
+
+test("test invalid validation options", function () {
+	var fix = xhrfixtures();
+	fix.loadFixtures(["./test/fixtures/simple.json"], function (err, results) {
+		var fixture = fix.getFixtures()["simple example of bad validation"]; //first one 
+		ok((typeof fixture === "object"), "the single fixture item is an object");
+		ok((typeof fixture.getSpec().request === "object" && typeof fixture.getSpec().response === "object"), "and the item contains to fields (request, response)");
+
+		//something happens here!!
+		fixture.validateResponse(false, false);
+		fixture.validateRequest(null, true);
+		start();
+	});  
+	stop(2000);
 });
 
 /**
+library should return what not matched in validation process (may be throws?)
 if string is parsable json - continue with validation tree
 fixtures - header case-insensitive
 fixture should contain a validation parameter

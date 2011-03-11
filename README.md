@@ -1,5 +1,5 @@
 #What is it?
-This classes help you out to load external XHR-Fixtures with jquery, qunit with sinon.
+XHRFixtures helps you to load external XHR-Fixtures with jquery to use it with qunit and sinon.
 It includes internal logics to validate requests or responses, for your tests.
 It's also possible to autogenerate some tests, or run the tests against a rest-api.
 
@@ -122,37 +122,38 @@ check out the test directory to more examples.
 ##JQuery
 That library uses jquery which is licensed under: 
 
-	Copyright 2011, John Resig
-	Dual licensed under the MIT or GPL Version 2 licenses.
-	http://jquery.org/license
+Copyright 2011, John Resig
+Dual licensed under the MIT or GPL Version 2 licenses.
+http://jquery.org/license
 
-	Includes Sizzle.js
-	http://sizzlejs.com/
-	Copyright 2011, The Dojo Foundation
-	Released under the MIT, BSD, and GPL Licenses.
+Includes Sizzle.js
+[http://sizzlejs.com/](http://sizzlejs.com/)
+
+Copyright 2011, The Dojo Foundation
+Released under the MIT, BSD, and GPL Licenses.
 
 ##QUnit
 A JavaScript Unit Testing Framework
 
-	http://docs.jquery.com/QUnit
+[http://docs.jquery.com/QUnit](http://docs.jquery.com/QUnit)
 
-	Copyright (c) 2011 John Resig, Jörn Zaefferer
-	Dual licensed under the MIT (MIT-LICENSE.txt)
-	or GPL (GPL-LICENSE.txt) licenses.
+Copyright (c) 2011 John Resig, Jörn Zaefferer
+Dual licensed under the MIT (MIT-LICENSE.txt)
+or GPL (GPL-LICENSE.txt) licenses.
 
 ##slide
 Also the library take advantage of a little script, known from the
 node.js community with a little correction by myself called "slide".
-You can find it on Github: https://github.com/isaacs/slide-flow-control
+You can find it on Github: [https://github.com/isaacs/slide-flow-control](https://github.com/isaacs/slide-flow-control)
 
 ##sinonjs
 You could use xhrfixtures with that cool library by Christian Johansen (christian@cjohansen.no)
-It is licensed under the BSD License. You can find it at github und https://github.com/cjohansen/Sinon.JS
+It is licensed under the BSD License. You can find it at github und [https://github.com/cjohansen/Sinon.JS](https://github.com/cjohansen/Sinon.JS)
 
 #License
 (The BSD License)
 
-Copyright (c) 2011, Mario Scheliga, mario@sourcegarden.com
+Copyright (c) 2011, Mario Scheliga, [mario@sourcegarden.com](mailto:mario@sourcegarden.com)
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification,

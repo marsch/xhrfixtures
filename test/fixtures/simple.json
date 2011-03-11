@@ -71,7 +71,7 @@
 				"method": "GET"
 				},
 			"__valid_response": {
-				"status": 201,
+				"status": 200,
 				"payload": {
 					"nooneknows": {
 						"type": "RegExp",

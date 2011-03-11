@@ -1,6 +1,7 @@
 /**
 * Original Author. Isaac Z. Schlueter
 * tweak array.isArray to constructor-check by mario scheliga
+* check the original code at: https://github.com/isaacs/slide-flow-control
 */
 
 function asyncMap (list, fn, cb_) {

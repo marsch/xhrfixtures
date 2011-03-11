@@ -124,7 +124,7 @@ That library uses jquery which is licensed under:
 
 Copyright 2011, John Resig
 Dual licensed under the MIT or GPL Version 2 licenses.
-http://jquery.org/license
+[http://jquery.org/license](http://jquery.org/license)
 
 Includes Sizzle.js
 [http://sizzlejs.com/](http://sizzlejs.com/)

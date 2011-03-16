@@ -3969,9 +3969,9 @@ sinon.FakeXMLHttpRequest = (function () {
                 return null;
             }
 
-            if (/^Set-Cookie2?$/i.test(header)) {
+            /*if (/^Set-Cookie2?$/i.test(header)) {
                 return null;
-            }
+            }*/
 
             return this.responseHeaders[header.toLowerCase()];
         },
@@ -3984,8 +3984,7 @@ sinon.FakeXMLHttpRequest = (function () {
             var headers = {};
 
             for (var header in this.responseHeaders) {
-                if (this.responseHeaders.hasOwnProperty(header) &&
-                    !/^Set-Cookie2?$/i.test(header)) {
+                if (this.responseHeaders.hasOwnProperty(header) ) { //&& !/^Set-Cookie2?$/i.test(header)) {
                     headers[header] = this.responseHeaders[header];
                 }
             }
